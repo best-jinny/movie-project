@@ -1,0 +1,49 @@
+{{>layout/header}}
+
+<h1>스프링 부트로 시작하는 웹서비스</h1>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-4">
+            <form>
+                <div class="form-group">
+                    <label for="keyword">영화 제목을 입력하세요</label>
+                    <input type="text" class="form-control" id="keyword" placeholder="제목을 입력하세요">
+                </div>
+            </form>
+            <button type="button" class="btn btn-primary" id="btn-search">검색</button>
+        </div>
+    </div>
+
+    <!-- 목록 출력 영역-->
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>영화 제목</th>
+            <th>이미지</th>
+            <th>링크</th>
+            <th>등록</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        <!-- posts 라는 List 순회 -->
+        {{#MoviesResponseDto}}
+            <tr>
+                <td>{{display}}</td>
+                <td></td>
+                <td></td>
+<!--                <td><img src="{{MoviesResponseDto.items.image}}"></td>-->
+<!--                <td>{{MoviesResponseDto.items.link}}</td>-->
+<!--                <td>등록</td>-->
+            </tr>
+        {{/MoviesResponseDto}}
+        </tbody>
+    </table>
+
+
+
+
+
+</div>
+
+
+{{>layout/footer}}
