@@ -14,12 +14,20 @@ var main = {
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
         }).done(function(res) {
-            alert(JSON.stringify(res));
-            //window.location.href = '/search-result';
+            var movies = JSON.parse(JSON.stringify(res));
+
+                        const element = document.getElementById("movie-list");
+
+                        element.innerHTML+=('<p>'+movies.items[0].title+'</p>');
+                        element.innerHTML+=('<img src = " '+movies.items[0].image + '" ></img>');
+                        element.innerHTML+=('<a href = " '+movies.items[0].link + '" >네이버검색결과</a>');
+
+
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
     }
+            //window.location.href = '/searc
 };
 
 main.init();

@@ -14,30 +14,10 @@
         </div>
     </div>
 
-    <!-- 목록 출력 영역-->
-    <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
-        <tr>
-            <th>영화 제목</th>
-            <th>이미지</th>
-            <th>링크</th>
-            <th>등록</th>
-        </tr>
-        </thead>
-        <tbody id="tbody">
-        <!-- posts 라는 List 순회 -->
-        {{#MoviesResponseDto}}
-            <tr>
-                <td>{{display}}</td>
-                <td></td>
-                <td></td>
-<!--                <td><img src="{{MoviesResponseDto.items.image}}"></td>-->
-<!--                <td>{{MoviesResponseDto.items.link}}</td>-->
-<!--                <td>등록</td>-->
-            </tr>
-        {{/MoviesResponseDto}}
-        </tbody>
-    </table>
+    <div id="movie-list"></div>
+
+
+
 
 
 
