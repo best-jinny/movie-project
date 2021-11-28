@@ -2,8 +2,15 @@ var main = {
     init : function () {
         var _this = this;
         $('#btn-search').on('click', function () {
+           var cell = document.getElementById("movie-list");
+
+           while ( cell.hasChildNodes() ) {
+            cell.removeChild( cell.firstChild );
+           }
+
             _this.search();
         });
+
     },
     search : function () {
         var keyword = $('#keyword').val();
@@ -16,18 +23,29 @@ var main = {
         }).done(function(res) {
             var movies = JSON.parse(JSON.stringify(res));
 
+
                         const element = document.getElementById("movie-list");
 
-                        element.innerHTML+=('<p>'+movies.items[0].title+'</p>');
-                        element.innerHTML+=('<img src = " '+movies.items[0].image + '" ></img>');
-                        element.innerHTML+=('<a href = " '+movies.items[0].link + '" >네이버검색결과</a>');
+                        for(var i = 0; i < movies.display; i++ ) {
 
+                             element.innerHTML+=('<div class="card">');
+                             element.innerHTML+=('<img class="card-img-top" src = " '+movies.items[i].image + '" style="width:100%"></img>');
+                             element.innerHTML+=('<div class="card-body">');
+                             element.innerHTML+=('<a href = " '+movies.items[i].link + '" ><h4 class="card-title"> ' + movies.items[i].title + '</h4></a>');
+                             element.innerHTML+=('<p class="card-text"> 감독 : ' + movies.items[i].director + ', 출연진 :' + movies.items[i].actor + '  </p>');
+                             element.innerHTML+=('<input type="button" class="btn btn-primary" value="봤어요">');
+                             element.innerHTML+=('</div></div>')
+
+                        }
 
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
-    }
-            //window.location.href = '/searc
+    },
+
+
+
 };
 
 main.init();
+
