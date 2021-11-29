@@ -11,6 +11,11 @@ var main = {
             _this.search();
         });
 
+        $(document).on( function insert() {
+            console.log("zz");
+        } );
+
+
     },
     search : function () {
         var keyword = $('#keyword').val();
@@ -33,16 +38,16 @@ var main = {
                              element.innerHTML+=('<div class="card-body">');
                              element.innerHTML+=('<a href = " '+movies.items[i].link + '" ><h4 class="card-title"> ' + movies.items[i].title + '</h4></a>');
                              element.innerHTML+=('<p class="card-text"> 감독 : ' + movies.items[i].director + ', 출연진 :' + movies.items[i].actor + '  </p>');
-                             element.innerHTML+=('<input type="button" class="btn btn-primary" value="봤어요">');
-                             element.innerHTML+=('</div></div>')
+                             element.innerHTML+=('<button class="btn btn-primary" onclick="insert()" >봤어요</button> ');
+
+                             element.innerHTML+=('</div></div>');
 
                         }
 
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
-    },
-
+    }
 
 
 };
