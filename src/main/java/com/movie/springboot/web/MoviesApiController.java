@@ -1,11 +1,11 @@
 package com.movie.springboot.web;
 
 import com.movie.springboot.service.movies.MoviesService;
+import com.movie.springboot.web.dto.MoviesSaveRequestDto;
+import com.movie.springboot.web.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -16,5 +16,10 @@ public class MoviesApiController {
     public Object get(@PathVariable("keyword") String keyword) {
         System.out.println("*********************키워드" + keyword);
         return  moviesService.findByKeyword(keyword);
+    }
+
+    @PostMapping("/api/v1/movies")
+    public Long save(@RequestBody MoviesSaveRequestDto requestDto) {
+        return moviesService.save(requestDto);
     }
 }
