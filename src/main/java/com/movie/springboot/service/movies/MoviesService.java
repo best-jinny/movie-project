@@ -24,13 +24,19 @@ public class MoviesService {
     @Transactional
     public Long save(MoviesSaveRequestDto requestDto) {
 
-
+        // 중복 체크
         Long id = moviesRepository.findByLink(requestDto.getLink());
 
-        System.out.println("@@@@@@@@@@아이디@@@@@@@@@@@@@" + id);
+        System.out.println("@@@@@@@@movie_id@@@@@@@@@@: " + id);
 
+        if(id == null) {
 
-        return moviesRepository.save(requestDto.toEntity()).getId();
+            return moviesRepository.save(requestDto.toEntity()).getId();
+
+        } else {
+
+            return id;
+        }
     }
 
     @Transactional

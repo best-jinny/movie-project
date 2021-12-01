@@ -1,5 +1,7 @@
 package com.movie.springboot.web;
 
+import com.movie.springboot.config.auth.LoginUser;
+import com.movie.springboot.config.auth.dto.SessionUser;
 import com.movie.springboot.service.movies.MoviesService;
 import com.movie.springboot.web.dto.MoviesSaveRequestDto;
 import com.movie.springboot.web.dto.PostsSaveRequestDto;
@@ -18,8 +20,9 @@ public class MoviesApiController {
         return  moviesService.findByKeyword(keyword);
     }
 
-    @PostMapping("/api/v1/movies")
-    public Long save(@RequestBody MoviesSaveRequestDto requestDto) {
-        return moviesService.save(requestDto);
-    }
+//    @PostMapping("/api/v1/movies")
+//    public Long save(@RequestBody MoviesSaveRequestDto requestDto, @LoginUser SessionUser user) {
+//        System.out.println("@@@@@@@@@@@@@@@@@@@@email : " + user.getEmail());
+//        return moviesService.save(requestDto);
+//    }
 }

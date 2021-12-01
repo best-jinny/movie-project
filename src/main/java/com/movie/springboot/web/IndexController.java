@@ -22,4 +22,9 @@ public class IndexController {
     public String searchResult() {
         return "search-result";
     }
+
+    @GetMapping("/my-list")
+    public String myList() {
+        return "my-list";
+    }
 }
