@@ -8,6 +8,7 @@
             {{#userName}}
                 Logged in as : <span id="user">{{userName}}</span>
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+                <a href="/my-list" class="btn btn-info active" role="button">My Movie List</a>
             {{/userName}}
             {{^userName}}
                 <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">

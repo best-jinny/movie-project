@@ -3,11 +3,15 @@ package com.movie.springboot.service.movies;
 import com.movie.springboot.api.MovieApiClient;
 import com.movie.springboot.domain.movies.Movies;
 import com.movie.springboot.domain.movies.MoviesRepository;
+import com.movie.springboot.web.dto.MoviesListResponseDto;
 import com.movie.springboot.web.dto.MoviesResponseDto;
 import com.movie.springboot.web.dto.MoviesSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -42,6 +46,18 @@ public class MoviesService {
     @Transactional
     public Long findByLink(String link) {
         return moviesRepository.findByLink(link);
+    }
+
+    @Transactional
+    public MoviesListResponseDto findById(Long id) {
+        return new MoviesListResponseDto();
+    }
+
+    public List<MoviesListResponseDto> makeList(List<Long> movieIds) {
+
+
+       return
+
     }
 
 }

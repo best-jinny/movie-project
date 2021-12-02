@@ -2,12 +2,17 @@ package com.movie.springboot.web;
 
 import com.movie.springboot.config.auth.LoginUser;
 import com.movie.springboot.config.auth.dto.SessionUser;
+import com.movie.springboot.service.myList.MyListService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+@RequiredArgsConstructor
 @Controller
 public class IndexController {
+
+    private final MyListService myListService;
 
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user) {
@@ -24,7 +29,11 @@ public class IndexController {
     }
 
     @GetMapping("/my-list")
-    public String myList() {
+    public String myList(Model model, @LoginUser SessionUser user) {
+
+        model.addAttribute("userName", user.getName());
+        model.addAttribute("list", myListService.findByUserId());
+
         return "my-list";
     }
 }

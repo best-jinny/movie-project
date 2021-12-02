@@ -3,11 +3,14 @@ package com.movie.springboot.service.myList;
 
 import com.movie.springboot.domain.myList.MyList;
 import com.movie.springboot.domain.myList.MyListRepository;
+import com.movie.springboot.web.dto.MyListResponseDto;
 import com.movie.springboot.web.dto.MyListSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -32,4 +35,11 @@ public class MyListService {
     public Optional<MyList> findByUserIdAndMovieId(Long userId, Long movieId) {
         return myListRepository.findByUserIdAndMovieId(userId, movieId);
     }
+
+    @Transactional
+    public List<MyListResponseDto> findByUserId(Long userId) {
+        return myListRepository.findByUserId(userId);
+    }
+
+
 }
