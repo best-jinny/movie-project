@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MoviesListResponseDto {
 
+    private Long id;
     private String title;
     private String link;
     private String image;
@@ -15,12 +16,15 @@ public class MoviesListResponseDto {
     private String actors;
 
     public MoviesListResponseDto(Movies entity) {
-        this.title = getTitle();
-        this.link = getLink();
-        this.image = getImage();
-        this.director = getDirector();
-        this.actors = getActors();
+        this.id = entity.getId();
+        this.title = entity.getTitle();
+        this.link = entity.getLink();
+        this.image = entity.getImage();
+        this.director = entity.getDirector();
+        this.actors = entity.getActors();
     }
 
 
+    public MoviesListResponseDto(MoviesListResponseDto moviesListResponseDto) {
+    }
 }
