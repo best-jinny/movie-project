@@ -75,9 +75,6 @@ public class MoviesService {
         }
 
 
-        System.out.println("@@@@@@@@@@movies@@@@@@@@@@@@@@@@@" + movies);
-        System.out.println("@@@@@@@@@@movies@@@@@@@@@@@@@@@@@" + movies.get(1).getTitle());
-
        return  movies;
 
     }

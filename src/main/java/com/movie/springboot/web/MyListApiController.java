@@ -5,11 +5,10 @@ import com.movie.springboot.config.auth.dto.SessionUser;
 import com.movie.springboot.service.movies.MoviesService;
 import com.movie.springboot.service.myList.MyListService;
 import com.movie.springboot.web.dto.MoviesSaveRequestDto;
+import com.movie.springboot.web.dto.MyListResponseDto;
 import com.movie.springboot.web.dto.MyListSaveRequestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -33,5 +32,15 @@ public class MyListApiController {
 
     }
 
+    @DeleteMapping("/api/v1/myList/{id}")
+    public Long delete(@PathVariable Long id, @LoginUser SessionUser user) {
+        // User ID
+        Long userId = user.getId();
+
+        MyListResponseDto myList = myListService.findByUserIdAndMovieId(userId, id);
+
+        myListService.delete(myList.getId());
+        return myList.getId();
+    }
 
 }

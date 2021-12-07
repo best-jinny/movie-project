@@ -21,8 +21,14 @@ public class MyListService {
     @Transactional
     public Long save(MyListSaveRequestDto requestDto) {
 
+        System.out.println("@@@@@@myList requestDto@@@@@@@@" + requestDto);
+        System.out.println("@@@@@@myList - requestDto user_id@@@@@@@@" + requestDto.getUserId());
+        System.out.println("@@@@@@myList - requestDto movie_id@@@@@@@@" + requestDto.getMovieId());
+
+
         // 중복 체크
-        Optional<MyList> myList = myListRepository.findByUserIdAndMovieId(requestDto.getUserId(), requestDto.getMovieId());
+        MyListResponseDto myList = myListRepository.findByUserIdAndMovieId(requestDto.getUserId(), requestDto.getMovieId());
+
 
         if(myList == null) {
             return myListRepository.save(requestDto.toEntity()).getId();
@@ -32,7 +38,7 @@ public class MyListService {
     }
 
     @Transactional
-    public Optional<MyList> findByUserIdAndMovieId(Long userId, Long movieId) {
+    public MyListResponseDto findByUserIdAndMovieId(Long userId, Long movieId) {
         return myListRepository.findByUserIdAndMovieId(userId, movieId);
     }
 
@@ -41,5 +47,10 @@ public class MyListService {
         return myListRepository.findByUserId(userId);
     }
 
-
+    @Transactional
+    public void delete(Long id) {
+        MyList myList = myListRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 항목이 없습니다. id = " + id));
+        myListRepository.delete(myList);
+    }
 }

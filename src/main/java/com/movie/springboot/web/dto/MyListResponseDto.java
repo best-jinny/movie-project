@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MyListResponseDto {
 
+    private Long id;
     private Long userId;
     private Long movieId;
 
     public MyListResponseDto(MyList entity) {
+        this.id = entity.getId();
         this.userId = entity.getId();
         this.movieId = entity.getMovieId();
     }
