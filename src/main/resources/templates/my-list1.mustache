@@ -1,0 +1,35 @@
+{{>layout/header}}
+
+
+<table class="table table-horizontal table-bordered">
+    <thead class="thead-strong">
+    <tr>
+        <th>영화 제목</th>
+        <th>이미지</th>
+        <th>삭제</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    {{#movies}}
+        <tr>
+            <td><a href="{{link}}">{{title}}</a></td>
+            <td><img src="{{image}}"></img></td>
+            <td><button type="button" class="btn btn-primary" id="btn-list-delete" value="{{id}}">삭제</button></td>
+        </tr>
+    {{/movies}}
+    {{^movies}}
+      <tr>
+          <td>영화가 없습니다.</td>
+      </tr>
+    {{/movies}}
+    </tbody>
+</table>
+
+
+
+
+
+</div>
+
+
+{{>layout/footer}}
