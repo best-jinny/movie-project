@@ -59,7 +59,7 @@ var main = {
                           html+='</div></div>';
                           html+='<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">';
                           html+='<div class="text-center">';
-                          html+='<button class="btn btn-outline-dark mt-auto" id="items" value="' + i + '" >Seen</button> ';
+                          html+='<button class="btn btn-outline-dark mt-auto" id="items" value="' + i + '" >watched</button> ';
                           html+='</div></div></div></div>';
                         }
 
