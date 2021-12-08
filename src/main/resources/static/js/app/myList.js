@@ -17,6 +17,14 @@ var main = {
 
        } );
 
+       var id="";
+
+           $(document).ready(function() {
+               $('#myModal').on('show.bs.modal', function(event) {
+                   id = $(event.relatedTarget).data('id');
+               });
+           });
+
 
     },
     delete : function (id) {
@@ -33,6 +41,11 @@ var main = {
             }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
+     },
+     getComment : function (id, comment) {
+        console.log(id);
+        console.log(comment);
+
      }
 };
 
