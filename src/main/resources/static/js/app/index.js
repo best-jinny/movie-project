@@ -44,21 +44,27 @@ var main = {
             var movies = JSON.parse(JSON.stringify(res));
 
 
-                        const element = document.getElementById("movie-list");
-
+                        var element = $("#movie-list");
+                        var html = "";
                         for(var i = 0; i < movies.display; i++ ) {
 
-                             element.innerHTML+=('<div class="card">');
-                             element.innerHTML+=('<img class="card-img-top" id = "movieImg' + i + '" src = " '+movies.items[i].image + '" style="width:100%"></img>');
-                             element.innerHTML+=('<div class="card-body">');
-                             element.innerHTML+=('<a id="movieLink' + i + '" href = " '+movies.items[i].link + '" ><h4 class="card-title" id="movieTitle' + i + '"> ' + movies.items[i].title + '</h4></a>');
-                             element.innerHTML+=('<p>감독:</p><p class="card-text" id="movieDirector'+i+'">' + movies.items[i].director + '</p>');
-                             element.innerHTML+=('<p>출연진 :</p><p class="card-text" id="movieActors'+i+'">' + movies.items[i].actor + '</p>');
-                             element.innerHTML+=('<button class="btn btn-primary" id="items" value="' + i + '" >봤어요</button> ');
-
-                             element.innerHTML+=('</div></div>');
-
+                          html+='<div class="col mb-5">';
+                          html+='<div class="card h-100">';
+                          html+='<img class="card-img-top" id = "movieImg' + i + '" src = " '+movies.items[i].image + '" ></img>';
+                          html+='<div class="card-body p-4">';
+                          html+='<div class="text-center">';
+                          html+='<a id="movieLink' + i + '" href = " '+movies.items[i].link + '" ><h5 class="fw-bolder" id="movieTitle' + i + '"> ' + movies.items[i].title + '</h5></a>';
+                          html+='<p>감독:</p><p  id="movieDirector'+i+'">' + movies.items[i].director + '</p>';
+                          html+='<p>출연진 :</p><p  id="movieActors'+i+'">' + movies.items[i].actor + '</p>';
+                          html+='</div></div>';
+                          html+='<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">';
+                          html+='<div class="text-center">';
+                          html+='<button class="btn btn-outline-dark mt-auto" id="items" value="' + i + '" >Seen</button> ';
+                          html+='</div></div></div></div>';
                         }
+
+                        element.append(html);
+
 
         }).fail(function (error) {
             alert(JSON.stringify(error));
@@ -81,8 +87,7 @@ var main = {
                 contentType:'application/json; charset=utf-8',
                 data: JSON.stringify(data)
             }).done(function() {
-                alert('글이 등록되었습니다.');
-                window.location.href = '/';
+                alert('저장 완료.');
             }).fail(function (error) {
                 alert(JSON.stringify(error));
             });

@@ -2,13 +2,20 @@ var main = {
     init : function () {
        var _this = this;
 
+       $( ".star_rating a" ).click(function() {
+            $(this).parent().children("a").removeClass("on");
+            $(this).addClass("on").prevAll("a").addClass("on");
+            return false;
+       });
+
+
 
        $(document).on( "click", "#btn-list-delete", function del() {
          var id = this.value;
 
         _this.delete(id);
 
-     } );
+       } );
 
 
     },

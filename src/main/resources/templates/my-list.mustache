@@ -1,35 +1,114 @@
 {{>layout/header}}
 
-
-<table class="table table-horizontal table-bordered">
-    <thead class="thead-strong">
-    <tr>
-        <th>영화 제목</th>
-        <th>이미지</th>
-        <th>삭제</th>
-    </tr>
-    </thead>
-    <tbody id="tbody">
-    {{#movies}}
-        <tr>
-            <td><a href="{{link}}">{{title}}</a></td>
-            <td><img src="{{image}}"></img></td>
-            <td><button type="button" class="btn btn-primary" id="btn-list-delete" value="{{id}}">삭제</button></td>
-        </tr>
-    {{/movies}}
-    {{^movies}}
-      <tr>
-          <td>영화가 없습니다.</td>
-      </tr>
-    {{/movies}}
-    </tbody>
-</table>
-
-
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#!"><i class="bi bi-film"></i>movies</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+            {{#userName}}
+                <li class="nav-item"><a class="nav-link" href="/my-list" role="button"><i class="bi bi-bookmarks"></i>My Movies</a></li>
+            </ul>
+                <form class="d-flex">
+                    <a class="btn btn-outline-dark" href="/logout" role="button">
+                        Logout
+                    </a>
+                </form>
+            {{/userName}}
+            {{^userName}}
+                <form class="d-flex">
+                    <a class="btn btn-outline-dark" href="/oauth2/authorization/google" role="button">
+                        Login
+                    </a>
+                </form>
+            {{/userName}}
 
 
+        </div>
+    </div>
+</nav>
 
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="movie-list">
+
+            {{#movies}}
+            <!-- 리스트 -->
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <button class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem" id="btn-list-delete" value="{{id}}">X</button>
+                    <img class="card-img-top" src = "{{image}}" ></img>
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <a href = "{{link}}" ><h5 class="fw-bolder">{{title}}</h5></a>
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                <p class="star_rating">
+                                    <a href="#" class="on">★</a>
+                                    <a href="#" class="on">★</a>
+                                    <a href="#" class="on">★</a>
+                                    <a href="#">★</a>
+                                    <a href="#">★</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <button type="button" class="btn btn-outline-dark mt-auto" data-toggle="modal" data-target="#myModal" data-id="{{id}}" >관리</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/movies}}
+            {{^movies}}
+                    <p>영화가 없습니다.</p>
+            {{/movies}}
+
+
+
+
+
+
+        </div>
+    </div>
+</section>
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="/">
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
 </div>
+
+
 
 
 {{>layout/footer}}

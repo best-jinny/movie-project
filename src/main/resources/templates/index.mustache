@@ -1,44 +1,57 @@
 {{>layout/header}}
 
-<h1>내가 본 영화 리스트 서비스</h1>
-<div class="col-md-12">
-    <!-- 로그인 기능 영역 -->
-    <div class="row">
-        <div class="col-md-6">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#!"><i class="bi bi-film"></i>movies</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
             {{#userName}}
-                Logged in as : <span id="user">{{userName}}</span>
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-                <a href="/my-list" class="btn btn-info active" role="button">My Movie List</a>
+                <li class="nav-item"><a class="nav-link" href="/my-list" role="button"><i class="bi bi-bookmarks"></i>My Movies</a></li>
+            </ul>
+                <form class="d-flex">
+                    <a class="btn btn-outline-dark" href="/logout" role="button">
+                        Logout
+                    </a>
+                </form>
             {{/userName}}
             {{^userName}}
-                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">
-                    Google Login
-                </a>
+                <form class="d-flex">
+                    <a class="btn btn-outline-dark" href="/oauth2/authorization/google" role="button">
+                        Login
+                    </a>
+                </form>
             {{/userName}}
+
+
         </div>
     </div>
+</nav>
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Search</h1>
+                    <input type="text" id="keyword">
+                    <button type="button" class ="btn btn-light" id="btn-search">search!</button>
 
-    <div class="row">
-        <div class="col-md-4">
-            <form>
-                <div class="form-group">
-                    <label for="keyword">영화 제목을 입력하세요</label>
-                    <input type="text" class="form-control" id="keyword" placeholder="제목을 입력하세요">
-                </div>
-            </form>
-            <button type="button" class="btn btn-primary" id="btn-search">검색</button>
         </div>
     </div>
-</div>
+</header>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="movie-list">
 
-    <div id="movie-list" class="card-columns">
 
+
+
+
+        </div>
     </div>
-
-
-
-
-
+</section>
 
 
 
