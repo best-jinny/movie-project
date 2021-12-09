@@ -9,13 +9,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
 @RequiredArgsConstructor
 @RestController
 public class MoviesApiController {
     private final MoviesService moviesService;
 
     @GetMapping("/api/v1/movies/{keyword}")
-    public Object get(@PathVariable("keyword") String keyword) {
+    public Object get(@PathVariable("keyword") String keyword) throws IOException {
         System.out.println("*********************키워드" + keyword);
         return  moviesService.findByKeyword(keyword);
     }
