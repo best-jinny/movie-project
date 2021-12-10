@@ -12,10 +12,12 @@ public class MyListResponseDto {
     private Long id;
     private Long userId;
     private Long movieId;
+    private String comment;
 
     public MyListResponseDto(MyList entity) {
         this.id = entity.getId();
         this.userId = entity.getId();
         this.movieId = entity.getMovieId();
+        this.comment = entity.getComment();
     }
 }

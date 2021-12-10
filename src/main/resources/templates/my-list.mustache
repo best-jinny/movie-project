@@ -90,12 +90,13 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form>
+                <form action="/api/v1/myList/comment" method="post">
                     <div class="form-group">
                         <label for="comment">Comment:</label>
-                        <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+                        <input type="hidden" name="movieId" id="movieId" value="">
+                        <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
                     </div>
-                    <button type="button" class="btn btn-primary" id="btn-submit">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="btn-submit">Submit</button>
                 </form>
             </div>
 

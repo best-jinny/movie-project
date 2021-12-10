@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface MyListRepository extends JpaRepository<MyList, Long> {
 
-    MyListResponseDto findByUserIdAndMovieId(Long userId, Long movieId);
+    MyList findByUserIdAndMovieId(Long userId, Long movieId);
     List<MyListResponseDto> findByUserId(Long userId);
 
 }

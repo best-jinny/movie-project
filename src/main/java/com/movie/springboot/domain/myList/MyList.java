@@ -22,10 +22,17 @@ public class MyList extends BaseTimeEntity {
     @Column(nullable = false)
     private Long movieId;
 
+    private String comment;
+
     @Builder
-    public MyList(Long userId, Long movieId) {
+    public MyList(Long userId, Long movieId, String comment) {
         this.userId = userId;
         this.movieId = movieId;
+        this.comment = comment;
+    }
+
+    public void updateComment(String comment) {
+        this.comment = comment;
     }
 
 

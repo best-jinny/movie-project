@@ -27,7 +27,7 @@ public class MyListService {
 
 
         // 중복 체크
-        MyListResponseDto myList = myListRepository.findByUserIdAndMovieId(requestDto.getUserId(), requestDto.getMovieId());
+        MyList myList = myListRepository.findByUserIdAndMovieId(requestDto.getUserId(), requestDto.getMovieId());
 
 
         if(myList == null) {
@@ -38,7 +38,7 @@ public class MyListService {
     }
 
     @Transactional
-    public MyListResponseDto findByUserIdAndMovieId(Long userId, Long movieId) {
+    public MyList findByUserIdAndMovieId(Long userId, Long movieId) {
         return myListRepository.findByUserIdAndMovieId(userId, movieId);
     }
 

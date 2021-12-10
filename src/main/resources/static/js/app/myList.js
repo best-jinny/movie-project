@@ -17,13 +17,17 @@ var main = {
 
        } );
 
-       var id="";
 
-           $(document).ready(function() {
-               $('#myModal').on('show.bs.modal', function(event) {
-                   id = $(event.relatedTarget).data('id');
-               });
-           });
+
+
+       $('#myModal').on('show.bs.modal', function(event) {
+           var id = $(event.relatedTarget).data('id');
+           console.log(id);
+            $('#movieId').val(id);
+
+       });
+
+
 
 
     },
@@ -42,9 +46,8 @@ var main = {
                 alert(JSON.stringify(error));
             });
      },
-     getComment : function (id, comment) {
-        console.log(id);
-        console.log(comment);
+     getComment : function () {
+        console.log("요기?");
 
      }
 };
