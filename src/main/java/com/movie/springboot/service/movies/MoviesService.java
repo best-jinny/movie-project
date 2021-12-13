@@ -38,14 +38,9 @@ public class MoviesService {
         // 중복 체크
         Long id = moviesRepository.findByLink(requestDto.getLink());
 
-        System.out.println("@@@@@@@@movie_id@@@@@@@@@@: " + id);
-
         if(id == null) {
-
             return moviesRepository.save(requestDto.toEntity()).getId();
-
         } else {
-
             return id;
         }
     }
@@ -74,7 +69,6 @@ public class MoviesService {
         for(int i = 0 ; i < movieIds.size(); i++) {
             movies.add(findById(movieIds.get(i).getMovieId()));
         }
-
 
        return  movies;
 

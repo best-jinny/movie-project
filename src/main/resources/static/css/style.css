@@ -11297,3 +11297,15 @@ textarea.form-control-lg {
 }
 .star_rating a:first-child {margin-left:0;}
 .star_rating a.on {color:#F2CB61;}
+
+input[type=text] {
+  box-sizing: border-box;
+  margin: 15px 0 15px 0;
+  padding: 10px 15px;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid #cccccc;
+}
+
+
+

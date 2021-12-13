@@ -1,6 +1,14 @@
 var main = {
     init : function () {
         var _this = this;
+        $('#btn-reset').on('click', function() {
+
+            $('#keyword').val('');
+            $('#keyword').focus();
+
+        });
+
+
         $('#btn-search').on('click', function () {
            var cell = document.getElementById("movie-list");
 
@@ -11,6 +19,17 @@ var main = {
             _this.search();
 
         });
+
+        $("#keyword").on("keyup",function(key){
+            if(key.keyCode==13) {
+              var cell = document.getElementById("movie-list");
+              while ( cell.hasChildNodes() ) {
+                cell.removeChild( cell.firstChild );
+              }
+              _this.search();
+            }
+        });
+
 
         $(document).on( "click", "#items", function register() {
           var idx = this.value;
@@ -72,6 +91,12 @@ var main = {
     },
 
     save : function (image, link, title, director, actors) {
+
+             if(!this.loginCheck()){
+                return false;
+             }
+
+
             var data = {
                 image : image,
                 link : link,
@@ -91,7 +116,17 @@ var main = {
             }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
-        },
+    },
+
+    loginCheck :  function (){
+                     if(userId == null){
+                         alert("로그인 후 가능합니다.");
+                         return false;
+                     }else{
+                         return true;
+                     }
+    }
+
 };
 
 main.init();

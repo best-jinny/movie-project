@@ -21,11 +21,6 @@ public class MyListService {
     @Transactional
     public Long save(MyListSaveRequestDto requestDto) {
 
-        System.out.println("@@@@@@myList requestDto@@@@@@@@" + requestDto);
-        System.out.println("@@@@@@myList - requestDto user_id@@@@@@@@" + requestDto.getUserId());
-        System.out.println("@@@@@@myList - requestDto movie_id@@@@@@@@" + requestDto.getMovieId());
-
-
         // 중복 체크
         MyList myList = myListRepository.findByUserIdAndMovieId(requestDto.getUserId(), requestDto.getMovieId());
 

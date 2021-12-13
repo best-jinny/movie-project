@@ -38,4 +38,16 @@ public class IndexController {
 
         return "my-list";
     }
+
+    @GetMapping("/dashboard")
+    public String dashboard(Model model, @LoginUser SessionUser user) {
+        model.addAttribute("userName", user.getName());
+        return "dashboard";
+    }
+
+    @GetMapping("/recommend")
+    public String recommend(Model model, @LoginUser SessionUser user) {
+        model.addAttribute("userName", user.getName());
+        return "recommend";
+    }
 }

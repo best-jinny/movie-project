@@ -27,7 +27,7 @@ public class MovieApiClient {
     private final String CLIENT_ID = "Xg4LDBHlVyETj_25Cn0T";
     private final String CLIENT_SECRET = "Wc87Jz8T08";
 
-    private final String apiUrl = "https://openapi.naver.com/v1/search/movie.json?query={keyword}";
+    private final String apiUrl = "https://openapi.naver.com/v1/search/movie.json?query={keyword}&display=30";
 
     public MoviesResponseDto requestMovie(String keyword) throws IOException {
         final HttpHeaders headers = new HttpHeaders();
@@ -39,26 +39,11 @@ public class MovieApiClient {
         // 네이버 영화 검색 api 조회 결과 - MoviesResponseDto
         MoviesResponseDto result = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, MoviesResponseDto.class, keyword).getBody();
 
-        for(int i = 0; i < result.getItems().length; i++) {
-            // 이미지 조회 결과 값
-
-            System.out.println("@@@@@@@@@@@GET IMAGE : " +  result.getItems()[i].getImage());
-
-
-
-        }
-
-
-
-
         // 네이버 영화 상세 페이지 링크에 있는 영화 코드 담을 list
         List<String> movieCodes = new ArrayList<>();
 
         // 네이버 영화 상세페이지 링크 list
         List<String> links = new ArrayList<>();
-
-        // 조회 결과 개수
-        System.out.println("@@@@@@@@@result length : " + result.getItems().length);
 
 
         for(int i = 0; i < result.getItems().length; i++) {
@@ -74,9 +59,6 @@ public class MovieApiClient {
             } else {
                 movieCodes.add("206641");
             }
-
-            System.out.println("**********movies code = " + movieCodes.get(i));
-
         }
 
         // 원본이미지 request url 담을 list
@@ -88,38 +70,26 @@ public class MovieApiClient {
             } else {
                 imageUrls.add("https://movie.naver.com/movie/bi/mi/photoViewPopup.naver?movieCode=" + 206641);
             }
-
-            System.out.println("**********imageUrls = " + imageUrls.get(i));
         }
-
-
-        //List<String> crawlingUrl = new ArrayList<>();
 
         // 원본이미지 src list
         List<String> realImagePaths = new ArrayList<>();
 
         for(int i = 0; i < imageUrls.size(); i++) {
-
             // imageUrls html 에서 targetImage src 크롤링
-
-                Document document = Jsoup.connect(imageUrls.get(i)).get();
-                Element el = document.getElementById("targetImage");
-                if(imageUrls.get(i) != "https://movie.naver.com/movie/bi/mi/photoViewPopup.naver?movieCode=206641"){
-                    realImagePaths.add(el.attr("abs:src"));
-                } else {
-                    realImagePaths.add("https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg");
-                }
+            Document document = Jsoup.connect(imageUrls.get(i)).get();
+            Element el = document.getElementById("targetImage");
+            if(imageUrls.get(i) != "https://movie.naver.com/movie/bi/mi/photoViewPopup.naver?movieCode=206641"){
+                realImagePaths.add(el.attr("abs:src"));
+            } else {
+                realImagePaths.add("https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg");
+            }
         }
 
         for(int i = 0; i < realImagePaths.size(); i++) {
             result.getItems()[i].setImage(realImagePaths.get(i));
-
         }
 
         return result;
     }
-
-
-
-
 }
