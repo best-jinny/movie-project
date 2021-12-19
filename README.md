@@ -1,3 +1,5 @@
+* url : http://ec2-3-35-95-65.ap-northeast-2.compute.amazonaws.com:8080/
+
 * 기간 : 2021.12 ~ 진행 중
 
 * 소개 : 지금까지 본 영화를 기록할 수 있는 토이프로젝트
