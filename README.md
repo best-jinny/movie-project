@@ -11,4 +11,4 @@
 * 기술 스택(개발 환경)
 HTML/CSS/JavsScript, Mustache
 Spring Boot, MariaDB, JPA
-AWS Linu
+AWS Linux
